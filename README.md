@@ -5,7 +5,7 @@ Provides includable php files after vite build
 ### install
 `$ npm install php-vitelinker`
 
-### build
+### run
 `$ npx php-vitelinker <.ts/.tsx/.js/.jsxFileOrGlobPatternEntryPoints...> --dist <path>`
 
 ### How to reproduce the dist directory in example_project
