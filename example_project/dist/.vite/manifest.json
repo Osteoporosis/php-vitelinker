@@ -1,0 +1,30 @@
+{
+  "../example_project/hello_world_scripts/bye_crual_world/bye_crual_world.ts": {
+    "file": "assets/bye_crual_world-DgPEfhnX.js",
+    "name": "bye_crual_world",
+    "src": "../example_project/hello_world_scripts/bye_crual_world/bye_crual_world.ts",
+    "isEntry": true
+  },
+  "../example_project/hello_world_scripts/hello_world.js": {
+    "file": "assets/hello_world-0gN5fIhw.js",
+    "name": "hello_world",
+    "src": "../example_project/hello_world_scripts/hello_world.js",
+    "isEntry": true
+  },
+  "../example_project/react-app/src/assets/react.svg": {
+    "file": "assets/react-CqE24J1b.svg",
+    "src": "../example_project/react-app/src/assets/react.svg"
+  },
+  "../example_project/react-app/src/main.tsx": {
+    "file": "assets/main-ClDsfdSZ.js",
+    "name": "main",
+    "src": "../example_project/react-app/src/main.tsx",
+    "isEntry": true,
+    "css": [
+      "assets/main-DiwrgTda.css"
+    ],
+    "assets": [
+      "assets/react-CqE24J1b.svg"
+    ]
+  }
+}

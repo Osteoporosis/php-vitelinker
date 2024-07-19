@@ -1,0 +1,36 @@
+{
+  "name": "php-vitelinker",
+  "version": "1.0.0",
+  "description": "Provides includable php files after vite build",
+  "keywords": [
+    "php",
+    "vite",
+    "build",
+    "bundle",
+    "minify",
+    "treeshake",
+    "include"
+  ],
+  "type": "module",
+  "main": "./dist/main.js",
+  "bin": {
+    "php-vitelinker": "./dist/main.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:example_project": "tsc && node ./dist/main.js ../example_project/react-app/src/main.tsx \"../example_project/hello_world_scripts/**/*(*.ts*|*.js*)\" --dist ../example_project/dist"
+  },
+  "author": "Osteoporosis",
+  "license": "MIT",
+  "repository": "github:Osteoporosis/php-vitelinker",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "glob": "^11.0.0",
+    "vite": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/node": "^20.14.10",
+    "typescript": "^5.5.3"
+  }
+}
