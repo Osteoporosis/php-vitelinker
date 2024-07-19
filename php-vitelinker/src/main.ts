@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import { Command } from 'commander';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { glob } from 'glob';
@@ -19,20 +20,22 @@ interface Entry {
 
 function parseCommandLineArgs() {
   const argumentsNames = '<.ts/.tsx/.js/.jsxFileOrGlobPatternEntryPoints...>';
-  const optionFlags = '--dist <path>';
+  const prefixFlags = '--prefix <path>'
+  const distFlags = '--dist <path>';
 
   const command = new Command();
   command
     .description('Provides includable php files after vite build')
     .arguments(argumentsNames)
-    .option(optionFlags, 'Output directory')
+    .option(prefixFlags, 'Server-side prefix path to the assets')
+    .option(distFlags, 'Output directory')
     .parse(process.argv);
 
   const options = command.opts();
   const rawEntries = command.args;
 
   if (!options.dist) {
-    console.error(`Output directory is required. Usage: npx php-vitelinker ${argumentsNames} ${optionFlags}`);
+    console.error(`Output directory is required. Usage: npx php-vitelinker ${argumentsNames} ${prefixFlags} ${distFlags}`);
     process.exit(1);
   }
 
@@ -42,14 +45,14 @@ function parseCommandLineArgs() {
   }
 
   const entries = rawEntries.flatMap(pattern => glob.sync(pattern));
-  return { entries, distPath: options.dist };
+  return { entries, prefixPath: options.prefix || './', distPath: options.dist };
 }
 
 
-function writePHPFile(src: string, entry: Entry, distPath: string) {
-  const fileTag = `<script type="module" src="./${entry.file}"></script>`;
-  const importTagAll = (entry.imports ?? []).map((i) => `<link rel="modulepreload" href="./${i}" />`).join("\n");
-  const cssTagAll = (entry.css ?? []).map((i) => `<link rel="stylesheet" href="./${i}" />`).join("\n");
+function writePHPFile(src: string, entry: Entry, prefixPath: string, distPath: string) {
+  const fileTag = `<script type="module" src="${prefixPath}${entry.file}"></script>`;
+  const importTagAll = (entry.imports ?? []).map((i) => `<link rel="modulepreload" href="${prefixPath}${i}" />`).join("\n");
+  const cssTagAll = (entry.css ?? []).map((i) => `<link rel="stylesheet" href="${prefixPath}${i}" />`).join("\n");
   const content = `<?= '${[fileTag, importTagAll, cssTagAll].join("\n")}' ?>`;
   const path = resolve(distPath, `packed__${entry.name}.php`);
   writeFileSync(path, content);
@@ -57,17 +60,17 @@ function writePHPFile(src: string, entry: Entry, distPath: string) {
 }
 
 
-function writePHPFiles(distPath: string) {
+function writePHPFiles(prefixPath: string, distPath: string) {
   const jsonString = readFileSync(resolve(distPath, "./.vite/manifest.json"), 'utf-8')
   const jsonData: Record<string, Entry> = JSON.parse(jsonString);
   const entries = Object.entries(jsonData).filter(
-    ([_key, value]: [string, Entry]) => value.hasOwnProperty('isEntry') && value.isEntry === true
+    ([, entry]: [string, Entry]) => Object.prototype.hasOwnProperty.call(entry, 'isEntry') && entry.isEntry === true
   );
-  entries.map(([key, value]) => { writePHPFile(key, value, distPath) });
+  entries.map(([src, entry]) => { writePHPFile(src, entry, prefixPath, distPath) });
 }
 
 
-async function buildVite(entries: string[], distPath: string) {
+async function buildVite(entries: string[], prefixPath: string, distPath: string) {
   const path = process.cwd();
   const inputEntries = entries.map(entry => resolve(path, entry));
   distPath = resolve(path, distPath)
@@ -88,7 +91,7 @@ async function buildVite(entries: string[], distPath: string) {
       },
     });
 
-    writePHPFiles(distPath);
+    writePHPFiles(prefixPath, distPath);
 
   } catch (error) {
     console.error(`Build failed: ${error}`);
@@ -98,8 +101,8 @@ async function buildVite(entries: string[], distPath: string) {
 
 
 async function main() {
-  const { entries, distPath: distPath } = parseCommandLineArgs();
-  await buildVite(entries, `${distPath}`);
+  const { entries, prefixPath: prefixPath, distPath: distPath } = parseCommandLineArgs();
+  await buildVite(entries, `${prefixPath}`, `${distPath}`);
 }
 
 

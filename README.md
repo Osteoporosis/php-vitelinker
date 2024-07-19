@@ -6,7 +6,10 @@ Provides includable php files after vite build
 `$ npm install php-vitelinker`
 
 ### run
-`$ npx php-vitelinker <.ts/.tsx/.js/.jsxFileOrGlobPatternEntryPoints...> --dist <path>`
+`$ npx php-vitelinker <.ts/.tsx/.js/.jsxFileOrGlobPatternEntryPoints...> --prefix <path> --dist <path>`
+
+### What is --prefix <path>?
+Server-side prefix path to the assets. As you include the packed php from outside, you may need specific absolute/relative prefix. The default value is './'.
 
 ### How to reproduce the dist directory in example_project
 `$ npm run build:example_project`
