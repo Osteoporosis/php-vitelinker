@@ -50,7 +50,7 @@ function writePHPFile(src: string, entry: Entry, distPath: string) {
   const fileTag = `<script type="module" src="./${entry.file}"></script>`;
   const importTagAll = (entry.imports ?? []).map((i) => `<link rel="modulepreload" href="./${i}" />`).join("\n");
   const cssTagAll = (entry.css ?? []).map((i) => `<link rel="stylesheet" href="./${i}" />`).join("\n");
-  const content = `<?= ${[fileTag, importTagAll, cssTagAll].join("\n")} ?>`;
+  const content = `<?= '${[fileTag, importTagAll, cssTagAll].join("\n")}' ?>`;
   const path = resolve(distPath, `packed__${entry.name}.php`);
   writeFileSync(path, content);
   console.log(`Build for ${src} completed. Include(or require) ${path}`);

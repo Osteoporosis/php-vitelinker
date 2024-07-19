@@ -1,6 +1,6 @@
 {
   "name": "php-vitelinker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Provides includable php files after vite build",
   "keywords": [
     "php",
