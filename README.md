@@ -3,7 +3,7 @@ Provides includable php files after vite build
 
 ## Usage
 ### install
-`$ npm install php-vitelinker`
+`$ npm install -D php-vitelinker`
 
 ### run
 `$ npx php-vitelinker <.ts/.tsx/.js/.jsxFileOrGlobPatternEntryPoints...> --prefix <path> --dist <path>`
