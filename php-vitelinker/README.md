@@ -17,5 +17,5 @@ Server-side prefix path to the assets. As you include the packed php from outsid
 Actually it executes the following
 > `"build:example_project": "tsc && node ./dist/main.js ../example_project/react-app/src/main.tsx \"../example_project/hello_world_scripts/**/*(*.ts*|*.js*)\" --dist ../example_project/dist"`
 
-### Fnally you get...
+### Finally you get...
 `packed__{entry_point_name}.php` files tagging assets as a result. All you need to do is including them into your php codebase.
