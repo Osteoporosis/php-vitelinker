@@ -1,7 +1,7 @@
 {
   "name": "php-vitelinker",
-  "version": "1.0.7",
-  "description": "Provides includable php files after vite build",
+  "version": "1.0.8",
+  "description": "A CLI tool for JS bundling. This tool generates includable PHP files after a Vite build, simplifying the integration of your JS assets into PHP projects.",
   "keywords": [
     "php",
     "vite",
@@ -29,15 +29,15 @@
   "dependencies": {
     "commander": "^12.1.0",
     "glob": "^11.0.0",
-    "vite": "^5.3.3"
+    "vite": "^5.3.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.7.0",
     "@types/glob": "^8.1.0",
-    "@types/node": "^20.14.10",
+    "@types/node": "^20.14.12",
     "eslint": "^9.7.0",
     "globals": "^15.8.0",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^7.16.1"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.17.0"
   }
 }
