@@ -1,0 +1,47 @@
+{
+  "name": "php-vitelinker",
+  "version": "1.0.10",
+  "description": "A CLI tool for JS bundling. This tool runs a Vite build and generates includable PHP files that point at the built assets.",
+  "keywords": [
+    "php",
+    "vite",
+    "build",
+    "bundle",
+    "minify",
+    "treeshake",
+    "include"
+  ],
+  "type": "module",
+  "main": "./dist/main.js",
+  "bin": {
+    "php-vitelinker": "./dist/main.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:example_project": "tsc && node ./dist/main.js example_project/react-app/src/main.tsx \"example_project/hello_world_scripts/**/*.{ts,js,tsx,jsx}\" --dist example_project/dist"
+  },
+  "author": "Osteoporosis",
+  "license": "MIT",
+  "repository": "github:Osteoporosis/php-vitelinker",
+  "overrides": {
+    "eslint": "^10.0.2"
+  },
+  "dependencies": {
+    "commander": "^14.0.3",
+    "glob": "^13.0.6",
+    "vite": "^7.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.3.3",
+    "eslint": "^10.0.2",
+    "globals": "^17.4.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
+  }
+}
