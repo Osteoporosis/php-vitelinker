@@ -1,6 +1,6 @@
 {
   "name": "php-vitelinker",
-  "version": "1.0.10",
+  "version": "2.0.0",
   "description": "A CLI tool for JS bundling. This tool runs a Vite build and generates includable PHP files that point at the built assets.",
   "keywords": [
     "php",
@@ -14,7 +14,7 @@
   "type": "module",
   "main": "./dist/main.js",
   "bin": {
-    "php-vitelinker": "./dist/main.js"
+    "php-vitelinker": "dist/main.js"
   },
   "files": [
     "dist",
@@ -22,19 +22,25 @@
     "LICENSE"
   ],
   "scripts": {
+    "clean": "rm ./package-lock.json && rm ./node_modules -r && rm ./example_project/react-app/node_modules -r && rm ./dist -r && rm ./example_project/dist -r",
     "build": "tsc",
-    "build:example_project": "tsc && node ./dist/main.js example_project/react-app/src/main.tsx \"example_project/hello_world_scripts/**/*.{ts,js,tsx,jsx}\" --dist example_project/dist"
+    "build:example_project": "npm --prefix example_project/react-app ci && tsc && node ./dist/main.js example_project/react-app/src/main.tsx \"example_project/hello_world_scripts/**/*.{ts,js,tsx,jsx}\" --outDir example_project/dist"
   },
   "author": "Osteoporosis",
   "license": "MIT",
-  "repository": "github:Osteoporosis/php-vitelinker",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Osteoporosis/php-vitelinker.git"
+  },
   "overrides": {
     "eslint": "^10.0.2"
   },
   "dependencies": {
     "commander": "^14.0.3",
-    "glob": "^13.0.6",
-    "vite": "^7.3.1"
+    "glob": "^13.0.6"
+  },
+  "peerDependencies": {
+    "vite": "^7.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -42,6 +48,7 @@
     "eslint": "^10.0.2",
     "globals": "^17.4.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.56.1",
+    "vite": "^7.3.1"
   }
 }

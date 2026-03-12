@@ -1,24 +1,24 @@
 {
-  "example_project/hello_world_scripts/bye_cruel_world/bye_cruel_world.ts": {
+  "../hello_world_scripts/bye_cruel_world/bye_cruel_world.ts": {
     "file": "assets/bye_cruel_world-_Uj1Ep6C.js",
     "name": "bye_cruel_world",
-    "src": "example_project/hello_world_scripts/bye_cruel_world/bye_cruel_world.ts",
+    "src": "../hello_world_scripts/bye_cruel_world/bye_cruel_world.ts",
     "isEntry": true
   },
-  "example_project/hello_world_scripts/hello_world.js": {
+  "../hello_world_scripts/hello_world.js": {
     "file": "assets/hello_world-0gN5fIhw.js",
     "name": "hello_world",
-    "src": "example_project/hello_world_scripts/hello_world.js",
+    "src": "../hello_world_scripts/hello_world.js",
     "isEntry": true
   },
-  "example_project/react-app/src/assets/react.svg": {
+  "src/assets/react.svg": {
     "file": "assets/react-CHdo91hT.svg",
-    "src": "example_project/react-app/src/assets/react.svg"
+    "src": "src/assets/react.svg"
   },
-  "example_project/react-app/src/main.tsx": {
-    "file": "assets/main-RhCDZK81.js",
+  "src/main.tsx": {
+    "file": "assets/main-DAtuGs_Z.js",
     "name": "main",
-    "src": "example_project/react-app/src/main.tsx",
+    "src": "src/main.tsx",
     "isEntry": true,
     "css": [
       "assets/main-COcDBgFa.css"

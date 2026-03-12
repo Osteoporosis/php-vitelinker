@@ -18,3 +18,6 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# .npmrc
+.npmrc
