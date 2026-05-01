@@ -17,7 +17,7 @@
 			"ppa": true,
 			"version": "os-provided"
 		},
-		"ghcr.io/devcontainers/features/node:1": {
+		"ghcr.io/devcontainers/features/node:2": {
 			"nodeGypDependencies": true,
 			"installYarnUsingApt": true,
 			"version": "lts",
